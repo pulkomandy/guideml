@@ -20,9 +20,7 @@
 #include <stdio.h>
 #include <errno.h>
 
-#include "private/user_runtime.h"
-extern struct user_space_program_args* gProgramArgs;
-
+extern char** argv_save;
 
 /* Fix the end-of-buffer ReadItem() 'well known' bug
  * where it "ungets" non-terminator (' ','=','\t','\n')
@@ -234,24 +232,19 @@ struct RDArgs * ReadArgs(STRPTR template, LONG * array, struct RDArgs *rdargs)
     }
     else
     {
-        BOOL notempty = !isatty(0);
-        BPTR input = Input();
-
-        D(bug("[ReadArgs] Input: 0x%p\n", input));
-        is_file_not_buffer = TRUE;
-
-        /*
-         * Take arguments from input stream. They were injected there by either
-         * runcommand.c or createnewproc.c (see vbuf_inject() routine).
-         * This is described in Guru Book.
-         */
         argbuff[0] = 0;
         lcs.CS_Buffer = &argbuff[0];
 
-        if (notempty)
-            FGets(input, lcs.CS_Buffer, sizeof(argbuff));
-
-        D(bug("[ReadArgs] Line: %s\n", argbuff));
+		/* Take arguments from command line. BeOS/Haiku puts a pointer to argv
+		 * in the argv_save global, but we get no backup of argc. Fortunately,
+		 * we know that the argv pointer array is null terminated.
+		 */
+		int i;
+		for(i = 1; argv_save[i]; i++)
+		{
+			strcat(argbuff, argv_save[i]);
+			strcat(argbuff, " ");
+		}
 
         cs1 = lcs.CS_Buffer;
 
@@ -261,6 +254,7 @@ struct RDArgs * ReadArgs(STRPTR template, LONG * array, struct RDArgs *rdargs)
         lcs.CS_CurChr = 0;
 
         cs = &lcs;
+
     }
 
     /* Check for optional reprompting */
