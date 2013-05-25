@@ -7,9 +7,9 @@
 
 #include <exec/types.h>
 
-#define MODE_OLDFILE "r"
+#define MODE_OLDFILE "r+"
 #define MODE_NEWFILE "w"
-#define MODE_READWRITE "r+"
+#define MODE_READWRITE "w+"
 
 enum {
 	OFFSET_CURRENT = SEEK_CUR,
