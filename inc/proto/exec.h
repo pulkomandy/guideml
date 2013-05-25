@@ -1,5 +1,6 @@
 #pragma once
 
+#include <libgen.h>
 #include <string.h>
 
 #include <OS.h>
@@ -44,7 +45,7 @@ static inline void CopyMemQuick(APTR src, APTR dest, LONG size)
 	memcpy(dest, src, size);
 }
 
-static inline const char* FilePart(const char* source)
+static inline const char* FilePart(char* source)
 {
 	return basename(source);
 }

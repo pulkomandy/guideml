@@ -7,9 +7,9 @@
 
 #include <exec/types.h>
 
-#define MODE_OLDFILE "r+"
-#define MODE_NEWFILE "w"
-#define MODE_READWRITE "w+"
+#define MODE_OLDFILE (int)"r+"
+#define MODE_NEWFILE (int)"w"
+#define MODE_READWRITE (int)"w+"
 
 enum {
 	OFFSET_CURRENT = SEEK_CUR,
@@ -17,10 +17,10 @@ enum {
 	OFFSET_END = SEEK_END,
 };
 
-static inline BPTR Open( CONST_STRPTR name, const char* accessMode )
+static inline BPTR Open( CONST_STRPTR name, int accessMode )
 	/* Open a file for read or write */
 {
-	return (BPTR)fopen(name, accessMode);
+	return (BPTR)fopen(name, (const char*)accessMode);
 }
 
 static inline LONG Close( BPTR file )
@@ -79,9 +79,9 @@ static inline void UnGetC(BPTR f, char c)
 	ungetc(c, (FILE*)f);
 }
 
-static inline long StrToLong(const char* str, LONG* result)
+static inline long StrToLong(char* str, LONG* result)
 {
-	const char* end;
+	char* end;
 	*result = strtol(str, &end, 10);
 	return end - str;
 }
