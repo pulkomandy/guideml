@@ -1,12 +1,20 @@
-Short:    AmigaGuide -> HTML converter
-Uploader: chris@unsatisfactorysoftware.co.uk (Chris Young)
-Author:   shred@chessy.aworld.de (Richard Koerber),chris@unsatisfactorysoftware.co.uk (Chris Young),pulkomandy@gmail.com (Adrien Destugues)
-Type:     text/hyper
-Kurz:     AmigaGuide -> HTML-Konverter
-Version:  3.15
-Requires: Haiku
-Language: English
-Architecture: Haiku
+# GuideML 3.15
+
+AmigaGuide to HTML converter for Haiku
+
+Authors:
+ * shred@chessy.aworld.de (Richard Koerber)
+ * chris@unsatisfactorysoftware.co.uk (Chris Young)
+ * pulkomandy@gmail.com (Adrien Destugues)
+
+This version was ported to Haiku using a set of Amiga/BCPL wrapper headers to
+redirect function calls. This allows sharing part of the sourcecode with the
+Amiga version. However, the GUI had to be removed, and some extra changes to the
+source were made.
+
+The ReadArgs stuff is copied from AROS sourcecode, with minor changes.
+
+## Documentation
 
 AmigaGuide to HTML file converter, with lots of features including:
 
@@ -35,8 +43,9 @@ AmigaGuide to HTML file converter, with lots of features including:
   - Lots more!
 
 
-CHANGES SINCE 3.11:
-V3.15 (21.06.2008)
+## CHANGES SINCE 3.11:
+
+### V3.15 (21.06.2008)
 
 * It is now possible to blank out navbar labels to prevent certain links from being shown.
 
@@ -47,7 +56,7 @@ V3.15 (21.06.2008)
 * GuideML did not always pick up the line number in links.
 
 
-V3.14 (10.05.2008)
+### V3.14 (10.05.2008)
 
 * Fixed various aspects of single file creation: line numbering, links to
   external documents, nodes with names which start with "main", tidy up of
@@ -65,7 +74,7 @@ V3.14 (10.05.2008)
 * Fixed the NUMBERLINES tooltype
 
 
-V3.13 (04.05.2008)
+### V3.13 (04.05.2008)
 
 * Added macro support.  AmigaGuide commands within macros will be
   translated to HTML as expected, and macros within macros are allowed,
@@ -88,28 +97,9 @@ V3.13 (04.05.2008)
 * Fixed "prepend ../" option, which wasn't working in all cases.
 
 
-V3.12 (30.04.2008)
+### V3.12 (30.04.2008)
 
 * Added "Prepend external links with ../" option to enable multi-file
   AmigaGuides to be converted, by converting each file into a directory
   named the same as the orignal file in lowercase.
 
-=======
-
-If you want to check the validity of this archive, there is a PGP signature
-contained in the Aminet .readme (not the one within the archive!)
-My PGP public key can be downloaded from
-http://www.unsatisfactorysoftware.co.uk/ftp/pgp-keys/chris.asc
-If you have any doubts that this archive may have been tampered with, do not
-execute the contents without consulting with me first.
-
--- Chris Young
-http://www.unsatisfactorysoftware.co.uk
-
-======
-
-This version was ported to Haiku using a set of Amiga/BCPL wrapper headers to
-redirect function calls. This allows sharing part of the sourcecode with the
-Amiga version. However, the GUI had to be removed.
-
-The ReadArgs stuff is copied from AROS sourcecode, with minor changes.
