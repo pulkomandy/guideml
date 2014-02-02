@@ -25,12 +25,12 @@ static inline void FreeVec(void* area)
 	delete_area(area_for(area));
 }
 
-static inline void* AllocMem(ULONG byteSize, ULONG attributes)
+static inline void* AllocMem(ULONG byteSize, __attribute__((unused)) ULONG attributes)
 {
 	return calloc(1, byteSize);
 }
 
-static inline void FreeMem(void* address, int size)
+static inline void FreeMem(void* address, __attribute__((unused)) int size)
 {
 	free(address);
 }

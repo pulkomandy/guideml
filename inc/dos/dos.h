@@ -1,6 +1,7 @@
 #pragma once
 
 #include <proto/exec.h>
+#include <exec/types.h>
 
 /* Returned by ReadItem() */
 #define ITEM_EQUAL    -2
@@ -18,3 +19,12 @@ struct DAList
 	STRPTR *MultVec;
 	BOOL    FreeRDA;
 };
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+	struct RDArgs * ReadArgs(STRPTR templat, LONG * array, struct RDArgs *rdargs);
+	void FreeArgs(struct RDArgs * args);
+#ifdef __cplusplus
+}
+#endif
